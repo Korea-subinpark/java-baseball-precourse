@@ -62,4 +62,37 @@ class BallSetTest {
     void non_range_generate_test() {
         assertThrowsExactly(IllegalArgumentException.class, () -> new BallSet("101"));
     }
+
+    @Test
+    @DisplayName("3 스트라이크")
+    void strike_3() {
+        BallSet ballSet1 = new BallSet("123");
+        BallSet ballSet2 = new BallSet("123");
+
+        GameResult gameResult = ballSet1.compare(ballSet2);
+        assertEquals(gameResult.strikeCount(), 3);
+        assertEquals(gameResult.ballCount(), 0);
+    }
+
+    @Test
+    @DisplayName("2볼 1스트라이크")
+    void ball_2_strike_1() {
+        BallSet ballSet1 = new BallSet("123");
+        BallSet ballSet2 = new BallSet("132");
+
+        GameResult gameResult = ballSet1.compare(ballSet2);
+        assertEquals(gameResult.strikeCount(), 1);
+        assertEquals(gameResult.ballCount(), 2);
+    }
+
+    @Test
+    @DisplayName("낫싱")
+    void nothing() {
+        BallSet ballSet1 = new BallSet("123");
+        BallSet ballSet2 = new BallSet("456");
+
+        GameResult gameResult = ballSet1.compare(ballSet2);
+        assertEquals(gameResult.strikeCount(), 0);
+        assertEquals(gameResult.ballCount(), 0);
+    }
 }
