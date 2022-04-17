@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 class BallSetTest {
 
@@ -42,5 +43,23 @@ class BallSetTest {
 
         // 4번째 볼은 추가되지 않음
         assertEquals(size, ballSet.size());
+    }
+
+    @Test
+    @DisplayName("허용치를 초과한 문자열로 생성한 경우")
+    void limit_generate_test() {
+        assertThrowsExactly(IllegalArgumentException.class, () -> new BallSet("1234"));
+    }
+
+    @Test
+    @DisplayName("숫자가 아닌 문자로 생성한 경우")
+    void non_number_generate_test() {
+        assertThrowsExactly(IllegalArgumentException.class, () -> new BallSet("abc"));
+    }
+
+    @Test
+    @DisplayName("1~9 범위 외 숫자로 생성한 경우")
+    void non_range_generate_test() {
+        assertThrowsExactly(IllegalArgumentException.class, () -> new BallSet("101"));
     }
 }

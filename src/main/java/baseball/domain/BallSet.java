@@ -12,6 +12,20 @@ public class BallSet {
         this.ballSet = new ArrayList<>();
     }
 
+    public BallSet(String ballNums) {
+        this.ballSet = new ArrayList<>();
+
+        if (ballNums.length() != LIMIT) {
+            throw new IllegalArgumentException("3자리 숫자를 입력해주세요.");
+        }
+
+        for (int i = 0; i < ballNums.length(); i++) {
+            char num = ballNums.charAt(i);
+            Ball ball = new Ball(Character.getNumericValue(num));
+            add(ball);
+        }
+    }
+
     public void generate() {
         while (LIMIT > ballSet.size()) {
             Ball ball = new Ball();

@@ -17,7 +17,7 @@ public class Ball {
 
     public Ball(int num) {
         if (num > MAX || num < MIN) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("1 ~ 9 숫자를 입력해주세요.");
         }
         this.num = num;
     }
