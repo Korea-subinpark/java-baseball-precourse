@@ -22,6 +22,17 @@ public class Ball {
         this.num = num;
     }
 
+    public GameResult compare(int index, BallSet other) {
+        if (other.compare(index, this)) {
+            return new GameResult(1, 0);
+        }
+        if (other.contains(this)) {
+            return new GameResult(0, 1);
+        }
+
+        return new GameResult();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

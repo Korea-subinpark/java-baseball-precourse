@@ -1,8 +1,16 @@
 package baseball;
 
+import baseball.view.InputView;
+
 public class Application {
     public static void main(String[] args) {
         BaseballGame game = new BaseballGame();
-        game.play();
+        boolean isRestart = true;
+
+        while (isRestart) {
+            game.play();
+            String restartInput = InputView.restartInput();
+            isRestart = InputView.parseRestartInput(restartInput);
+        }
     }
 }

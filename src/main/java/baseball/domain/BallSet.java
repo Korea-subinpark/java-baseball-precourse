@@ -48,4 +48,22 @@ public class BallSet {
     public int size() {
         return ballSet.size();
     }
+
+    public GameResult compare(BallSet other) {
+        GameResult gameResult = new GameResult();
+        for (int i = 0; i < LIMIT; i++) {
+            Ball ball = ballSet.get(i);
+            gameResult.add(ball.compare(i, other));
+        }
+
+        return gameResult;
+    }
+
+    public boolean compare(int index, Ball ball) {
+        return ballSet.get(index).equals(ball);
+    }
+
+    public boolean contains(Ball ball) {
+        return ballSet.contains(ball);
+    }
 }
